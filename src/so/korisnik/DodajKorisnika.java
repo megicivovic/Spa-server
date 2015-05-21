@@ -15,6 +15,8 @@ import so.GenerickaSistemskaOperacija;
 public class DodajKorisnika extends GenerickaSistemskaOperacija {
 
     private Korisnik korisnik;
+    
+    
 
     public DodajKorisnika(Korisnik korisnik) {
         this.korisnik = korisnik;
@@ -32,6 +34,14 @@ public class DodajKorisnika extends GenerickaSistemskaOperacija {
 
     @Override
     protected void izvrsiValidaciju() {
+    }
+
+    public Korisnik getKorisnik() {
+        return korisnik;
+    }
+
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
     }
 
 }

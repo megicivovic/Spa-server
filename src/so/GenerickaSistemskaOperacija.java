@@ -5,7 +5,7 @@
  */
 package so;
 
-import db.DatabaseBroker;
+import baza.BrokerBazePodataka;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -17,11 +17,11 @@ import java.util.logging.Logger;
  */
 public abstract class GenerickaSistemskaOperacija {
 
-    protected db.DatabaseBroker broker;
+    protected baza.BrokerBazePodataka broker;
 
     public GenerickaSistemskaOperacija() {
         try {
-            broker = DatabaseBroker.getInstance();
+            broker = BrokerBazePodataka.getInstance();
             broker.uspostaviKonekcijuPropertiesFile();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(GenerickaSistemskaOperacija.class.getName()).log(Level.SEVERE, null, ex);
@@ -42,7 +42,7 @@ public abstract class GenerickaSistemskaOperacija {
         } catch (Exception ex) {
             if (broker != null) {
                 System.out.println(ex.getMessage());
-                broker.rollback();
+                broker.ponistiTransakciju();
             }
             throw ex;
         } finally {
@@ -60,12 +60,12 @@ public abstract class GenerickaSistemskaOperacija {
     protected abstract void izvrsiKonkretnuOperaciju() throws Exception;
 
     private void potvrdiTransakciju() throws SQLException {
-        DatabaseBroker.getInstance().commit();
+        BrokerBazePodataka.getInstance().potvrdiTransakciju();
 
     }
 
     private void ponistiTransakciju() throws SQLException {
-        DatabaseBroker.getInstance().rollback();
+        BrokerBazePodataka.getInstance().ponistiTransakciju();
     }
 
 }

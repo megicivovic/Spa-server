@@ -10,7 +10,7 @@ import domen.Raspored;
 import domen.Tretman;
 import domen.Zaposleni;
 import java.util.List;
-import logic.Kontroler;
+import server.Kontroler;
 import so.GenerickaSistemskaOperacija;
 
 /**

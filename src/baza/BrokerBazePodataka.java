@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package db;
+package baza;
 
 import com.mysql.jdbc.ResultSetImpl;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
@@ -23,41 +23,55 @@ import java.util.logging.Logger;
  *
  * @author student1
  */
-public final class DatabaseBroker {
+public final class BrokerBazePodataka {
 
     private Connection konekcija;
-    private static DatabaseBroker instance;
+    private static BrokerBazePodataka instance;
 
-    public DatabaseBroker() {
+    public BrokerBazePodataka() {
 
     }
 
-    public static DatabaseBroker getInstance() {
+    public static BrokerBazePodataka getInstance() {
         if (instance == null) {
-            instance = new DatabaseBroker();
+            instance = new BrokerBazePodataka();
         }
         return instance;
     }
 
-    public void raskiniKonekciju() throws SQLException {
-        konekcija.close();
+    public void ucitajDrajver() throws ClassNotFoundException {
+
+        try {
+            Class.forName(ModelBaze.getInstance().dajDrajver());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(BrokerBazePodataka.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
+        }
     }
 
     public void uspostaviKonekcijuPropertiesFile() throws ClassNotFoundException, SQLException, IOException {
-        Class.forName(Util.getInstance().getDriver());
-        String url = Util.getInstance().getURL();
-        String user = Util.getInstance().getUser();
-        String password = Util.getInstance().getPassword();
-        konekcija = DriverManager.getConnection(url, user, password);
-        konekcija.setAutoCommit(false);
-        System.out.println("Konekcija uspesna!");
+        try {
+            konekcija = DriverManager.getConnection(ModelBaze.getInstance().dajURL(), ModelBaze.getInstance().dajKorisnika(), ModelBaze.getInstance().dajSifru());
+            konekcija.setAutoCommit(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(BrokerBazePodataka.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public void commit() throws SQLException {
+    public void zatvoriKonekciju() {
+
+        try {
+            konekcija.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BrokerBazePodataka.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void potvrdiTransakciju() throws SQLException {
         konekcija.commit();
     }
 
-    public void rollback() throws SQLException {
+    public void ponistiTransakciju() throws SQLException {
         konekcija.rollback();
     }
 
@@ -67,12 +81,12 @@ public final class DatabaseBroker {
             System.out.println(upit);
             Statement s = konekcija.createStatement();
             ResultSet rs = s.executeQuery(upit);
-           if (rs==null){
-               return new ArrayList<>();
-           }
+            if (rs == null) {
+                return new ArrayList<>();
+            }
             return domenskiObjekat.vratiListuIzRS(rs);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseBroker.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BrokerBazePodataka.class.getName()).log(Level.SEVERE, null, ex);
             throw new Exception("Neuspesno ucitavanje podataka.");
         }
     }
@@ -87,14 +101,16 @@ public final class DatabaseBroker {
             Statement s = konekcija.createStatement();
             s.executeUpdate(upit, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = s.getGeneratedKeys();
+            if (rs == null) {
+                return -1;
+            }
             if (rs.next()) {
                 id = rs.getInt(1);
             }
-
-            commit();
+            potvrdiTransakciju();
             s.close();
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseBroker.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BrokerBazePodataka.class.getName()).log(Level.SEVERE, null, ex);
             throw new Exception("Neuspesno cuvanje objekta.");
         }
         return id;
@@ -109,7 +125,7 @@ public final class DatabaseBroker {
             s.executeUpdate(upit);
             s.close();
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseBroker.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BrokerBazePodataka.class.getName()).log(Level.SEVERE, null, ex);
             throw new Exception("Neuspesno azuriranje objekta.");
         }
     }
@@ -120,10 +136,12 @@ public final class DatabaseBroker {
             System.out.println(upit);
             Statement s = konekcija.createStatement();
             ResultSet rs = s.executeQuery(upit);
-
+            if (rs == null) {
+                return (GenerickiDomenskiObjekat) new Object();
+            }
             return domenskiObjekat.vratiListuIzRS(rs).get(0);
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseBroker.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BrokerBazePodataka.class.getName()).log(Level.SEVERE, null, ex);
             throw new Exception("Neuspesno ucitavanje podataka.");
         }
     }
@@ -136,22 +154,22 @@ public final class DatabaseBroker {
             s.executeUpdate(upit);
             s.close();
         } catch (Exception ex) {
-            Logger.getLogger(DatabaseBroker.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BrokerBazePodataka.class.getName()).log(Level.SEVERE, null, ex);
             throw new Exception("Neuspesno brisanje objekta.");
         }
     }
 
-    public int prebroj(GenerickiDomenskiObjekat domenskiObjekat, String uslov) throws Exception {
-        try {
-            String upit = "SELECT COUNT(*) FROM " + domenskiObjekat.dajNazivTabele() + uslov;
-            System.out.println(upit);
-            Statement s = konekcija.createStatement();
-            ResultSet rs = s.executeQuery(upit);
-
-            return domenskiObjekat.vratiBrojIzRS(rs);
-        } catch (Exception ex) {
-            Logger.getLogger(DatabaseBroker.class.getName()).log(Level.SEVERE, null, ex);
-            throw new Exception("Neuspesno ucitavanje podataka.");
-        }
-    }
+//    public int prebroj(GenerickiDomenskiObjekat domenskiObjekat, String uslov) throws Exception {
+//        try {
+//            String upit = "SELECT COUNT(*) FROM " + domenskiObjekat.dajNazivTabele() + uslov;
+//            System.out.println(upit);
+//            Statement s = konekcija.createStatement();
+//            ResultSet rs = s.executeQuery(upit);
+//
+//            return domenskiObjekat.vratiBrojIzRS(rs);
+//        } catch (Exception ex) {
+//            Logger.getLogger(BrokerBazePodataka.class.getName()).log(Level.SEVERE, null, ex);
+//            throw new Exception("Neuspesno ucitavanje podataka.");
+//        }
+//    }
 }

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logic;
+package server;
 
-import db.DatabaseBroker;
+import baza.BrokerBazePodataka;
 import domen.GenerickiDomenskiObjekat;
 import domen.Kompanija;
 import domen.Korisnik;
@@ -59,11 +59,11 @@ import so.zaposleni.VratiZaposlenePoID;
  */
 public class Kontroler {
 
-    DatabaseBroker dbbr;
+    BrokerBazePodataka dbbr;
     private static Kontroler instanca;
 
     public Kontroler() throws ClassNotFoundException, SQLException, IOException {
-        dbbr = DatabaseBroker.getInstance();
+        dbbr = BrokerBazePodataka.getInstance();
         
         
 

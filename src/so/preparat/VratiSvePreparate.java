@@ -9,7 +9,7 @@ import domen.GenerickiDomenskiObjekat;
 import domen.Kompanija;
 import domen.Preparat;
 import java.util.List;
-import logic.Kontroler;
+import server.Kontroler;
 import so.GenerickaSistemskaOperacija;
 
 /**

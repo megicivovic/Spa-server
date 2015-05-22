@@ -5,7 +5,6 @@
  */
 package so.tretman;
 
-import domen.Preparat;
 import domen.Tretman;
 import so.GenerickaSistemskaOperacija;
 

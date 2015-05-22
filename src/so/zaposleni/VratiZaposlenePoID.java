@@ -5,7 +5,6 @@
  */
 package so.zaposleni;
 
-import domen.Preparat;
 import domen.Zaposleni;
 import so.GenerickaSistemskaOperacija;
 

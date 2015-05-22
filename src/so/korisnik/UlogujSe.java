@@ -6,7 +6,6 @@
 package so.korisnik;
 
 
-import baza.BrokerBazePodataka;
 import domen.GenerickiDomenskiObjekat;
 import domen.Korisnik;
 

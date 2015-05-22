@@ -6,8 +6,6 @@
 package so.raspored;
 
 import domen.Raspored;
-import domen.Tretman;
-import domen.TretmanPreparati;
 import so.GenerickaSistemskaOperacija;
 
 /**

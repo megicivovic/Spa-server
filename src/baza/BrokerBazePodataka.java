@@ -5,8 +5,6 @@
  */
 package baza;
 
-import com.mysql.jdbc.ResultSetImpl;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import domen.GenerickiDomenskiObjekat;
 import java.io.IOException;
 import java.sql.Connection;

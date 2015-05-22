@@ -6,7 +6,6 @@
 package so.kompanija;
 
 import domen.Kompanija;
-import domen.Preparat;
 import so.GenerickaSistemskaOperacija;
 
 /**

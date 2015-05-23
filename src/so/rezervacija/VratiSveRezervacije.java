@@ -42,7 +42,8 @@ public class VratiSveRezervacije extends GenerickaSistemskaOperacija {
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws Exception {
-        List<GenerickiDomenskiObjekat> listaR = broker.vratiSveObjekte(new Rezervacija(), uslov);
+        List<GenerickiDomenskiObjekat> listaR = broker.vratiSveObjekte(new Rezervacija(), " JOIN tretman USING(tretmanID)"
+                + "JOIN zaposleni USING(zaposleniID) JOIN klijent USING(klijentID) "+uslov);
         if (listaR != null && !listaR.isEmpty()) {
             for (GenerickiDomenskiObjekat r : listaR) {
                 rezervacije.add((Rezervacija) r);

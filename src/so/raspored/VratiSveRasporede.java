@@ -10,7 +10,6 @@ import domen.Raspored;
 import domen.Tretman;
 import domen.Zaposleni;
 import java.util.List;
-import server.Kontroler;
 import so.GenerickaSistemskaOperacija;
 
 /**
@@ -36,13 +35,7 @@ public class VratiSveRasporede extends GenerickaSistemskaOperacija {
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws Exception {
-        listaRasporeda = broker.vratiSveObjekte(new Raspored(), uslov);
-        for (GenerickiDomenskiObjekat raspored : listaRasporeda) {
-            Tretman t = Kontroler.vratiInstancu().vratiTretmanePoID(((Raspored) raspored).getTretman().getTretmanID());
-            Zaposleni z = Kontroler.vratiInstancu().vratiZaposlenePoID(((Raspored) raspored).getZaposleni().getZaposleniID());
-            ((Raspored) raspored).setTretman(t);
-            ((Raspored) raspored).setZaposleni(z);
-        }
+        listaRasporeda = broker.vratiSveObjekte(new Raspored(), " JOIN zaposleni USING(zaposleniID) JOIN tretman USING(tretmanID) "+uslov);        
     }
 
     public List<GenerickiDomenskiObjekat> vratiListuRasporeda() {

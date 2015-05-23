@@ -55,6 +55,13 @@ public class ServerskaNit extends Thread {
             case OPERACIJA_ULOGUJ_SE:
                 serverOdgovor = ServerKontroler.ulogujSe(klijentZahtev);
                 break;
+            case OPERACIJA_REGISTRUJ_SE:
+                serverOdgovor = ServerKontroler.registrujSe(klijentZahtev);
+                break;
+            case OPERACIJA_VALIDIRAJ_KORISNICKO_IME:
+                serverOdgovor = ServerKontroler.validirajKorisnickoIme(klijentZahtev);
+                break;
+
             case OPERACIJA_VRATI_SVE_KOMPANIJE:
                 serverOdgovor = ServerKontroler.vratiSveKompanije(klijentZahtev);
                 break;

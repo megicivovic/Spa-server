@@ -9,7 +9,7 @@ import domen.GenerickiDomenskiObjekat;
 import domen.Kompanija;
 import domen.Preparat;
 import java.util.List;
-import server.Kontroler;
+import server.ServerKontroler;
 import so.GenerickaSistemskaOperacija;
 
 /**
@@ -30,11 +30,7 @@ public class VratiSvePreparate extends GenerickaSistemskaOperacija {
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws Exception {
-        listaPreparata = broker.vratiSveObjekte(new Preparat(), "");
-        for (GenerickiDomenskiObjekat p : listaPreparata) {
-            Kompanija k = (Kompanija) Kontroler.vratiInstancu().vratiKompanijePoID(((Preparat) p).getProizvodjac().getKompanijaID());
-            ((Preparat) p).setProizvodjac(k);
-        }
+        listaPreparata = broker.vratiSveObjekte(new Preparat(), " JOIN kompanija ON (preparat.proizvodjac=kompanija.kompanijaID) ");
     }
 
     public List<GenerickiDomenskiObjekat> vratiListuPreparata() {

@@ -87,7 +87,7 @@ public class ServerKontroler {
         return serverOdgovor;
     }
 
-    public static ServerOdgovor validirajIme(KlijentZahtev zahtev) {
+    public static ServerOdgovor validirajKorisnickoIme(KlijentZahtev zahtev) {
         Korisnik korisnik = (Korisnik) zahtev.getObjekat();
         GenerickaSistemskaOperacija so = new ValidirajKorisnickoIme(korisnik);
         ServerOdgovor serverOdgovor = new ServerOdgovor();
@@ -122,7 +122,7 @@ public class ServerKontroler {
         Rezervacija r = (Rezervacija) klijentZahtev.getObjekat();
         ServerOdgovor serverOdgovor = new ServerOdgovor();
         try {
-            boolean raspolozivost = proveriRaspolozivost(r.getTretmanID(), r.getZaposleniID(), r.getVreme());
+            boolean raspolozivost = proveriRaspolozivost(r.getTretman().getTretmanID(), r.getZaposleni().getZaposleniID(), r.getVreme());
             if (raspolozivost) {
                 GenerickaSistemskaOperacija so = new DodajRezervaciju(r);
                 so.izvrsiSO();
@@ -162,7 +162,7 @@ public class ServerKontroler {
             if (rezervacijeZaposlenog != null) {
                 for (Rezervacija rezervacija : rezervacijeZaposlenog) {
                     //vreme zavrsetka tretmana
-                    Tretman t = new VratiTretmanePoID(rezervacija.getTretmanID()).vratiTretman();
+                    Tretman t = new VratiTretmanePoID(rezervacija.getTretman().getTretmanID()).vratiTretman();
                     Calendar cal = new GregorianCalendar();
                     cal.setTime(rezervacija.getVreme());
                     cal.add(Calendar.MINUTE, t.getTrajanjeUMin());

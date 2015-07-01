@@ -32,7 +32,7 @@ public class VratiSvePreparatePoID extends GenerickaSistemskaOperacija {
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws Exception {
-        p = (Preparat) broker.pretraziPoID(p, preparatID);
+        p = (Preparat) broker.pretraziPoID(p, preparatID," JOIN kompanija ON (preparat.proizvodjac=kompanija.kompanijaID) ");
     }
 
     public Preparat vratiPreparat() {

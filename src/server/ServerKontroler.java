@@ -62,6 +62,9 @@ public class ServerKontroler {
 
         try {
             so.izvrsiSO();
+            if (((UlogujSe) so).getKlijent()==null){
+                throw new Exception("");
+            }
             serverOdgovor.setObjekat(((UlogujSe) so).getKlijent());
             serverOdgovor.setStatus(Status.ZAVRSENO);
         } catch (Exception ex) {
@@ -93,6 +96,9 @@ public class ServerKontroler {
         ServerOdgovor serverOdgovor = new ServerOdgovor();
         try {
             so.izvrsiSO();
+            if (!((ValidirajKorisnickoIme) so).isMoze()){
+                 throw new Exception("");
+            }
             serverOdgovor.setObjekat(((ValidirajKorisnickoIme) so).isMoze());
             serverOdgovor.setStatus(Status.ZAVRSENO);
         } catch (Exception ex) {
@@ -140,10 +146,10 @@ public class ServerKontroler {
     static boolean proveriRaspolozivost(int tretmanID, int zaposleniID, Date vreme) throws Exception {
         boolean raspolozivost = true;
 
-        GenerickaSistemskaOperacija so = new VratiSveRezervacije(tretmanID, zaposleniID, vreme, " WHERE tretmanID = " + tretmanID + " AND zaposleniID = " + zaposleniID);
+        GenerickaSistemskaOperacija so = new VratiSveRezervacije(" WHERE tretmanID = " + tretmanID + " AND zaposleniID = " + zaposleniID);
         so.izvrsiSO();
         try {
-            List<Rezervacija> rezervacije = ((VratiSveRezervacije) so).getRezervacije();
+            List<Rezervacija> rezervacije = ((VratiSveRezervacije) so).vratiListuRezervacija();
 
             GenerickaSistemskaOperacija vsr = new VratiSveRasporede(" WHERE tretmanID= " + tretmanID + " AND zaposleniID = " + zaposleniID);
             vsr.izvrsiSO();
@@ -152,12 +158,13 @@ public class ServerKontroler {
             if (rezervacije != null) {
                 if (rezervacije.size() >= brTermina) {
                     raspolozivost = false;
+                    throw new Exception("Zaposleni koga ste izabrali nema slobodnih termina!");
                 }
             }
 
-            GenerickaSistemskaOperacija soZ = new VratiSveRezervacije(tretmanID, zaposleniID, vreme, " WHERE zaposleniID = " + zaposleniID);
+            GenerickaSistemskaOperacija soZ = new VratiSveRezervacije(" WHERE zaposleniID = " + zaposleniID);
             soZ.izvrsiSO();
-            List<Rezervacija> rezervacijeZaposlenog = ((VratiSveRezervacije) so).getRezervacije();
+            List<Rezervacija> rezervacijeZaposlenog = ((VratiSveRezervacije) so).vratiListuRezervacija();
 
             if (rezervacijeZaposlenog != null) {
                 for (Rezervacija rezervacija : rezervacijeZaposlenog) {
@@ -177,6 +184,7 @@ public class ServerKontroler {
 
                     if (!cal.before(vremePocetka)) {
                         raspolozivost = false;
+                        throw new Exception("Ne mozete rezervisati traženi termin!");
                     }
                 }
             }
@@ -518,6 +526,55 @@ public class ServerKontroler {
         try {
             so.izvrsiSO();
             serverOdgovor.setObjekat(((VratiZaposlenePoID) so).vratiZaposlenog());
+            serverOdgovor.setStatus(Status.ZAVRSENO);
+        } catch (Exception ex) {
+            serverOdgovor.setObjekat(ex);
+            serverOdgovor.setStatus(Status.IZUZETAK);
+        }
+        return serverOdgovor;
+    }
+
+    static ServerOdgovor vratiSveRezervacije(KlijentZahtev klijentZahtev) {
+        GenerickaSistemskaOperacija so = new VratiSveRezervacije();
+        ServerOdgovor serverOdgovor = new ServerOdgovor();
+
+        try {
+            so.izvrsiSO();
+            serverOdgovor.setObjekat(((VratiSveRezervacije) so).vratiListuRezervacija());
+            serverOdgovor.setStatus(Status.ZAVRSENO);
+        } catch (Exception ex) {
+            serverOdgovor.setObjekat(ex);
+            serverOdgovor.setStatus(Status.IZUZETAK);
+        }
+        return serverOdgovor;
+    }
+
+    static ServerOdgovor vratiSveRezervacijeDana(KlijentZahtev klijentZahtev) {
+        GregorianCalendar dan = (GregorianCalendar) klijentZahtev.getObjekat();      
+        GenerickaSistemskaOperacija so = new VratiSveRezervacije(" WHERE YEAR(vreme)="+dan.get(GregorianCalendar.YEAR)
+                + " AND MONTH(vreme)= "+(dan.get(GregorianCalendar.MONTH)+1)
+                + " AND DAY(vreme)="+dan.get(GregorianCalendar.DAY_OF_MONTH));
+        ServerOdgovor serverOdgovor = new ServerOdgovor();
+
+        try {
+            so.izvrsiSO();
+            serverOdgovor.setObjekat(((VratiSveRezervacije) so).vratiListuRezervacija());
+            serverOdgovor.setStatus(Status.ZAVRSENO);
+        } catch (Exception ex) {
+            serverOdgovor.setObjekat(ex);
+            serverOdgovor.setStatus(Status.IZUZETAK);
+        }
+        return serverOdgovor;
+    }
+    static ServerOdgovor vratiSveRezervacijeRasporeda(KlijentZahtev klijentZahtev) {
+        Raspored r = (Raspored) klijentZahtev.getObjekat();      
+        GenerickaSistemskaOperacija so = new VratiSveRezervacije(" WHERE tretmanID="+r.getTretman().getTretmanID()
+                +" AND zaposleniID="+r.getZaposleni().getZaposleniID());
+        ServerOdgovor serverOdgovor = new ServerOdgovor();
+
+        try {
+            so.izvrsiSO();
+            serverOdgovor.setObjekat(((VratiSveRezervacije) so).vratiListuRezervacija());
             serverOdgovor.setStatus(Status.ZAVRSENO);
         } catch (Exception ex) {
             serverOdgovor.setObjekat(ex);

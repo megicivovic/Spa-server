@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package server;
 
 import java.io.IOException;
@@ -16,13 +15,14 @@ import java.util.logging.Logger;
  *
  * @author Ivana
  */
-public class Server extends Thread{
-    
+public class Server extends Thread {
+
     private ServerSocket serverSocket;
-    
-    public Server(){
+    ServerskaNit serverskaNit;
+
+    public Server(int brojPorta) {
         try {
-            serverSocket = new ServerSocket (9000);
+            serverSocket = new ServerSocket(brojPorta);
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -30,17 +30,16 @@ public class Server extends Thread{
 
     @Override
     public void run() {
-        while (true){
+        while (true) {
             try {
                 Socket socket = serverSocket.accept();
-                ServerskaNit serverskaNit = new ServerskaNit(socket);
+                serverskaNit = new ServerskaNit(socket);
                 serverskaNit.start();
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     }
-    
-    
+
 }

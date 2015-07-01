@@ -30,7 +30,7 @@ public class IzmeniTretman extends GenerickaSistemskaOperacija {
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws Exception {
-        broker.azuriraj(tretman);
+        broker.izmeni(tretman);
     }
 
 }

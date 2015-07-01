@@ -18,7 +18,7 @@ import protokol.objekti.ServerOdgovor;
 
 /**
  *
- * @author Ivana
+ * @author Megi
  */
 public class ServerskaNit extends Thread {
 
@@ -68,9 +68,6 @@ public class ServerskaNit extends Thread {
             case OPERACIJA_DODAJ_REZERVACIJU:
                 serverOdgovor = ServerKontroler.dodajRezervaciju(klijentZahtev);
                 break;
-            case OPERACIJA_DAJ_ID_KORISNIKA_IZ_SESIJE:
-                // serverOdgovor = ServerKontroler.pretraziSerije(klijentZahtev);
-                break;
             case OPERACIJA_DODAJ_KOMPANIJU:
                 serverOdgovor = ServerKontroler.dodajKompaniju(klijentZahtev);
                 break;
@@ -88,9 +85,6 @@ public class ServerskaNit extends Thread {
                 break;
             case OPERACIJA_DODAJ_TRETMAN:
                 serverOdgovor = ServerKontroler.dodajTretman(klijentZahtev);
-                break;
-            case OPERACIJA_DODAJ_U_SESIJU:
-                // serverOdgovor = ServerKontroler.dodajSeriju(klijentZahtev);
                 break;
             case OPERACIJA_DODAJ_ZAPOSLENOG:
                 serverOdgovor = ServerKontroler.dodajZaposlenog(klijentZahtev);
@@ -139,6 +133,15 @@ public class ServerskaNit extends Thread {
                 break;
             case OPERACIJA_VRATI_ZAPOSLENE_PO_ID:
                 serverOdgovor = ServerKontroler.vratiSveZaposlenePoID(klijentZahtev);
+                break;
+            case OPERACIJA_VRATI_SVE_REZERVACIJE:
+                serverOdgovor = ServerKontroler.vratiSveRezervacije(klijentZahtev);
+                break;
+            case OPERACIJA_VRATI_SVE_REZERVACIJE_DANA:
+                serverOdgovor = ServerKontroler.vratiSveRezervacijeDana(klijentZahtev);
+                break;
+            case OPERACIJA_VRATI_SVE_REZERVACIJE_RASPOREDA:
+                serverOdgovor = ServerKontroler.vratiSveRezervacijeRasporeda(klijentZahtev);
                 break;
 
             default:

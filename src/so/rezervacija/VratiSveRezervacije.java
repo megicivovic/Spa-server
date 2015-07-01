@@ -17,21 +17,18 @@ import so.GenerickaSistemskaOperacija;
  * @author Megi
  */
 public class VratiSveRezervacije extends GenerickaSistemskaOperacija {
-
-    int tretmanID;
-    int zaposleniID;
-    Date vreme;
+   
     String uslov;
-    private List<Rezervacija> rezervacije;
+    private List<Rezervacija> rezervacije=new ArrayList<>();
 
-    public VratiSveRezervacije(int tretmanID, int zaposleniID, Date vreme, String uslov) {
-        this.tretmanID = tretmanID;
-        this.zaposleniID = zaposleniID;
-        this.vreme = vreme;
-        this.uslov = uslov;
-        rezervacije = new ArrayList<>();
+    public VratiSveRezervacije() {
+        uslov="";
     }
 
+    public VratiSveRezervacije(String uslov) {
+        this.uslov = uslov;
+    }
+    
     @Override
     protected void izvrsiValidaciju() {
     }
@@ -51,7 +48,7 @@ public class VratiSveRezervacije extends GenerickaSistemskaOperacija {
         }
     }
 
-    public List<Rezervacija> getRezervacije() {
+    public List<Rezervacija> vratiListuRezervacija() {
         return rezervacije;
     }
 

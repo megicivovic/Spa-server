@@ -32,7 +32,7 @@ public class VratiZaposlenePoID extends GenerickaSistemskaOperacija {
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws Exception {
-        z = (Zaposleni) broker.pretraziPoID(z, zaposleniID);
+        z = (Zaposleni) broker.pretraziPoID(z, zaposleniID,"");
     }
 
     public Zaposleni vratiZaposlenog() {

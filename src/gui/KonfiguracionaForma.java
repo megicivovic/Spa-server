@@ -38,7 +38,7 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
         sacuvajButton = new javax.swing.JButton();
         startServerButton = new javax.swing.JButton();
         dodajKonfiguracijuTab = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jpnlKonfiguracija = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -53,6 +53,8 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
         pregledKofiguracijaTab = new javax.swing.JPanel();
         pregledKonfiguracijaTable = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        jtxtBrojPorta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,60 +97,60 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpnlKonfiguracijaLayout = new javax.swing.GroupLayout(jpnlKonfiguracija);
+        jpnlKonfiguracija.setLayout(jpnlKonfiguracijaLayout);
+        jpnlKonfiguracijaLayout.setHorizontalGroup(
+            jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnlKonfiguracijaLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(imeSubpaTextField)
                     .addComponent(imeDrajveraTextField)
                     .addComponent(urlTextField)
                     .addComponent(korisnickoImeTextField)
                     .addComponent(sifraTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnlKonfiguracijaLayout.createSequentialGroup()
                 .addContainerGap(418, Short.MAX_VALUE)
                 .addComponent(dodajButton)
                 .addGap(103, 103, 103))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jpnlKonfiguracijaLayout.setVerticalGroup(
+            jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnlKonfiguracijaLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(imeSubpaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(imeDrajveraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(urlTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(korisnickoImeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sifraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dodajButton)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        dodajKonfiguracijuTab.addTab("Dodaj konfiguraciju", jPanel1);
+        dodajKonfiguracijuTab.addTab("Dodaj konfiguraciju", jpnlKonfiguracija);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -176,45 +178,60 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
         );
         pregledKofiguracijaTabLayout.setVerticalGroup(
             pregledKofiguracijaTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 449, Short.MAX_VALUE)
+            .addGap(0, 416, Short.MAX_VALUE)
             .addGroup(pregledKofiguracijaTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pregledKofiguracijaTabLayout.createSequentialGroup()
-                    .addContainerGap(44, Short.MAX_VALUE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pregledKonfiguracijaTable, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         dodajKonfiguracijuTab.addTab("Pregled svih konfiguracija", pregledKofiguracijaTab);
 
+        jLabel7.setText("Broj porta:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dodajKonfiguracijuTab, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(aktivnaKonfiguracijaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77)
-                        .addComponent(sacuvajButton)
-                        .addGap(71, 71, 71)
-                        .addComponent(startServerButton)))
+                        .addGap(26, 26, 26)
+                        .addComponent(dodajKonfiguracijuTab, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(27, 27, 27)
+                                .addComponent(jtxtBrojPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(startServerButton)
+                                .addGap(207, 207, 207))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(54, 54, 54)
+                                .addComponent(aktivnaKonfiguracijaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65)
+                                .addComponent(sacuvajButton)))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(startServerButton)
+                    .addComponent(jLabel7)
+                    .addComponent(jtxtBrojPorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aktivnaKonfiguracijaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sacuvajButton)
-                    .addComponent(startServerButton))
-                .addGap(59, 59, 59)
-                .addComponent(dodajKonfiguracijuTab)
+                    .addComponent(jLabel1)
+                    .addComponent(sacuvajButton))
+                .addGap(18, 18, 18)
+                .addComponent(dodajKonfiguracijuTab, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -235,12 +252,12 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Nedozvoljeno ime za SUBP");
             return;
         }
-        
+
         String url = urlTextField.getText().trim();
         String drajver = imeDrajveraTextField.getText().trim();
         String korisnik = korisnickoImeTextField.getText().trim();
         String sifra = sifraTextField.getText().trim();
-        
+
         ModelBaze.getInstance().postaviURL(dbms, url);
         ModelBaze.getInstance().postaviDrajver(dbms, drajver);
         ModelBaze.getInstance().postaviKorisnika(dbms, korisnik);
@@ -249,8 +266,27 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
     }//GEN-LAST:event_dodajButtonActionPerformed
 
     private void startServerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startServerButtonActionPerformed
-        Server server = new Server();
+        String sBrPorta = jtxtBrojPorta.getText();
+        int brPorta = 0;
+        try {
+            brPorta = Integer.parseInt(sBrPorta);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Neispravan broj porta!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        jpnlKonfiguracija.setEnabled(true);
+        dodajButton.setEnabled(true);
+        dodajKonfiguracijuTab.setEnabled(true);
+        dodajButton.setEnabled(true);
+        imeSubpaTextField.setEnabled(true);
+        imeDrajveraTextField.setEnabled(true);
+        urlTextField.setEnabled(true);
+        korisnickoImeTextField.setEnabled(true);
+        sifraTextField.setEnabled(true);
+
+        Server server = new Server(brPorta);
         server.start();
+
     }//GEN-LAST:event_startServerButtonActionPerformed
 
     /**
@@ -300,8 +336,10 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTable jTable1;
+    private javax.swing.JPanel jpnlKonfiguracija;
+    private javax.swing.JTextField jtxtBrojPorta;
     private javax.swing.JTextField korisnickoImeTextField;
     private javax.swing.JPanel pregledKofiguracijaTab;
     private javax.swing.JScrollPane pregledKonfiguracijaTable;
@@ -325,5 +363,12 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
             }
 
         });
+        dodajKonfiguracijuTab.setEnabled(false);
+        dodajButton.setEnabled(false);
+        imeSubpaTextField.setEnabled(false);
+        imeDrajveraTextField.setEnabled(false);
+        urlTextField.setEnabled(false);
+        korisnickoImeTextField.setEnabled(false);
+        sifraTextField.setEnabled(false);
     }
 }

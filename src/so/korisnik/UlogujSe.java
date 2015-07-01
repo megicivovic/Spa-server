@@ -19,10 +19,11 @@ import so.GenerickaSistemskaOperacija;
  */
 public class UlogujSe extends GenerickaSistemskaOperacija  {
 
-    private Korisnik klijent;
+    private Korisnik klijent=null;
+    private Korisnik ulogovaniKlijent=null;
     
      public UlogujSe(Korisnik korisnik) {
-        this.klijent = korisnik;
+        this.ulogovaniKlijent = korisnik;
     }
 
 
@@ -36,7 +37,7 @@ public class UlogujSe extends GenerickaSistemskaOperacija  {
         List<GenerickiDomenskiObjekat> klijenti = broker.vratiSveObjekte(new Korisnik(), "");
         for (GenerickiDomenskiObjekat gdo : klijenti) {
             Korisnik k = (Korisnik) gdo;
-            if (k.equals(klijent)) {
+            if (k.equals(ulogovaniKlijent)) {
                 klijent = k;
                 break;
             }
@@ -44,7 +45,7 @@ public class UlogujSe extends GenerickaSistemskaOperacija  {
 
     }
 
-    public Korisnik getKlijent() {
+    public Korisnik getKlijent() throws Exception {      
         return klijent;
     }
 

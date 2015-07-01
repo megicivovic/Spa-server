@@ -32,7 +32,7 @@ public class VratiSveKompanijePoID extends GenerickaSistemskaOperacija {
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws Exception {
-        k = (Kompanija) broker.pretraziPoID(k, kompanijaID);
+        k = (Kompanija) broker.pretraziPoID(k, kompanijaID,"");
     }
 
     public Kompanija vratiKompaniju() {

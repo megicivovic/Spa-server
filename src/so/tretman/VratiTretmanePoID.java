@@ -32,7 +32,7 @@ public class VratiTretmanePoID extends GenerickaSistemskaOperacija {
 
     @Override
     protected void izvrsiKonkretnuOperaciju() throws Exception {
-        t = (Tretman) broker.pretraziPoID(t, tretmanID);
+        t = (Tretman) broker.pretraziPoID(t, tretmanID,"");
     }
 
     public Tretman vratiTretman() {

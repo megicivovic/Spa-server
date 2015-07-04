@@ -7,6 +7,7 @@ package gui;
 
 import baza.ModelBaze;
 import gui.podesavanja.KonfiguracioniModelTabele;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import server.Server;
 
@@ -55,6 +56,7 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jtxtBrojPorta = new javax.swing.JTextField();
+        jlblServerStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -190,6 +192,9 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
 
         jLabel7.setText("Broj porta:");
 
+        jlblServerStatus.setForeground(new java.awt.Color(255, 0, 0));
+        jlblServerStatus.setText("Server nije pokrenut!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -208,7 +213,9 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
                                 .addComponent(jtxtBrojPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(startServerButton)
-                                .addGap(207, 207, 207))
+                                .addGap(27, 27, 27)
+                                .addComponent(jlblServerStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(54, 54, 54)
@@ -224,7 +231,8 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startServerButton)
                     .addComponent(jLabel7)
-                    .addComponent(jtxtBrojPorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtBrojPorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblServerStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aktivnaKonfiguracijaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,17 +260,18 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Nedozvoljeno ime za SUBP");
             return;
         }
-
+        
         String url = urlTextField.getText().trim();
         String drajver = imeDrajveraTextField.getText().trim();
         String korisnik = korisnickoImeTextField.getText().trim();
         String sifra = sifraTextField.getText().trim();
-
+        
         ModelBaze.getInstance().postaviURL(dbms, url);
         ModelBaze.getInstance().postaviDrajver(dbms, drajver);
         ModelBaze.getInstance().postaviKorisnika(dbms, korisnik);
         ModelBaze.getInstance().postaviSifru(dbms, sifra);
         ((KonfiguracioniModelTabele) jTable1.getModel()).fireTableDataChanged();
+        JOptionPane.showMessageDialog(this, "Uspešno ste dodali konfiguraciju baze!");
     }//GEN-LAST:event_dodajButtonActionPerformed
 
     private void startServerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startServerButtonActionPerformed
@@ -274,19 +283,19 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Neispravan broj porta!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
         }
 
-        jpnlKonfiguracija.setEnabled(true);
-        dodajButton.setEnabled(true);
-        dodajKonfiguracijuTab.setEnabled(true);
-        dodajButton.setEnabled(true);
-        imeSubpaTextField.setEnabled(true);
-        imeDrajveraTextField.setEnabled(true);
-        urlTextField.setEnabled(true);
-        korisnickoImeTextField.setEnabled(true);
-        sifraTextField.setEnabled(true);
-
+//        jpnlKonfiguracija.setEnabled(true);
+//        dodajButton.setEnabled(true);
+//        dodajKonfiguracijuTab.setEnabled(true);
+//        dodajButton.setEnabled(true);
+//        imeSubpaTextField.setEnabled(true);
+//        imeDrajveraTextField.setEnabled(true);
+//        urlTextField.setEnabled(true);
+//        korisnickoImeTextField.setEnabled(true);
+//        sifraTextField.setEnabled(true);
         Server server = new Server(brPorta);
         server.start();
-
+        jlblServerStatus.setText("Server je pokrenut!");
+        jlblServerStatus.setForeground(Color.green);
     }//GEN-LAST:event_startServerButtonActionPerformed
 
     /**
@@ -338,6 +347,7 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jlblServerStatus;
     private javax.swing.JPanel jpnlKonfiguracija;
     private javax.swing.JTextField jtxtBrojPorta;
     private javax.swing.JTextField korisnickoImeTextField;
@@ -355,20 +365,20 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
         }
         aktivnaKonfiguracijaComboBox.setSelectedItem(ModelBaze.getInstance().dajNazivTrenutneBaze());
         jTable1.setModel(new KonfiguracioniModelTabele());
-
+        
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 ModelBaze.getInstance().sacuvajPodesavanja();
             }
-
+            
         });
-        dodajKonfiguracijuTab.setEnabled(false);
-        dodajButton.setEnabled(false);
-        imeSubpaTextField.setEnabled(false);
-        imeDrajveraTextField.setEnabled(false);
-        urlTextField.setEnabled(false);
-        korisnickoImeTextField.setEnabled(false);
-        sifraTextField.setEnabled(false);
+//        dodajKonfiguracijuTab.setEnabled(false);
+//        dodajButton.setEnabled(false);
+//        imeSubpaTextField.setEnabled(false);
+//        imeDrajveraTextField.setEnabled(false);
+//        urlTextField.setEnabled(false);
+//        korisnickoImeTextField.setEnabled(false);
+//        sifraTextField.setEnabled(false);
     }
 }

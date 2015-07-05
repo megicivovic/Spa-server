@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import protokol.Protokol;
@@ -32,7 +33,10 @@ public class ServerskaNit extends Thread {
     public void run() {
         try {
             zapocniKomunikaciju();
+        } catch (SocketException se) {
+            System.out.println("Klijent se otkacio");
         } catch (IOException ex) {
+
             Logger.getLogger(ServerskaNit.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ServerskaNit.class.getName()).log(Level.SEVERE, null, ex);
@@ -53,6 +57,7 @@ public class ServerskaNit extends Thread {
         System.out.println(protokol);
         switch (protokol) {
             case OPERACIJA_ULOGUJ_SE:
+                System.out.println("Klijent se ulogovao!");
                 serverOdgovor = ServerKontroler.ulogujSe(klijentZahtev);
                 break;
             case OPERACIJA_REGISTRUJ_SE:

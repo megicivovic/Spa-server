@@ -89,7 +89,7 @@ public final class RadSaBazom {
         }
     }
 
-    public int sacuvaj(GenerickiDomenskiObjekat domenskiObjekat) throws Exception {
+    public synchronized int sacuvaj(GenerickiDomenskiObjekat domenskiObjekat) throws Exception {
         int id = 0;
         try {
             String upit = "INSERT INTO " + domenskiObjekat.dajNazivTabele()
@@ -114,7 +114,7 @@ public final class RadSaBazom {
         return id;
     }
 
-    public void izmeni(GenerickiDomenskiObjekat domenskiObjekat) throws Exception {
+    public synchronized void izmeni(GenerickiDomenskiObjekat domenskiObjekat) throws Exception {
 
         try {
             String upit = "UPDATE " + domenskiObjekat.dajNazivTabele() + " SET " + domenskiObjekat.dajApdejtVrednosti();
@@ -144,7 +144,7 @@ public final class RadSaBazom {
         }
     }
 
-    public void obrisi(GenerickiDomenskiObjekat domenskiObjekat, String uslov) throws Exception {
+    public synchronized void obrisi(GenerickiDomenskiObjekat domenskiObjekat, String uslov) throws Exception {
         try {
             String upit = "DELETE FROM " + domenskiObjekat.dajNazivTabele() + " WHERE " + uslov;
             System.out.println(upit);

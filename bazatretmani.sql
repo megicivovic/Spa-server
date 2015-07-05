@@ -26,11 +26,11 @@ CREATE TABLE `klijent` (
   `korisnickoIme` varchar(50) NOT NULL,
   `korisnickaSifra` varchar(50) NOT NULL,
   PRIMARY KEY (`klijentID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 /*Data for the table `klijent` */
 
-insert  into `klijent`(`klijentID`,`imePrezime`,`korisnickoIme`,`korisnickaSifra`) values (1,'Magdalina Civovic','megi','megi'),(2,'Admin','admin','admin'),(3,'Marija Civovic','marijacivovic','marijacivovic');
+insert  into `klijent`(`klijentID`,`imePrezime`,`korisnickoIme`,`korisnickaSifra`) values (1,'Magdalina Civovic','megi','megi'),(2,'Admin','admin','admin'),(3,'Marija Civovic','marijacivovic','marijacivovic'),(4,'Mina Cirkovic','miki','miki'),(5,'Mina Cirkovic','mina','mina'),(6,'Tatjana4','tanja','tanja'),(10,'Luna Lunic','luna','luna'),(11,'Nina Nikolic','niki','niki'),(12,'Marija Civovic','seka','seka'),(13,'Seka Civovic','zuki','seka');
 
 /*Table structure for table `kompanija` */
 
@@ -45,11 +45,11 @@ CREATE TABLE `kompanija` (
   `datumOsnivanja` date NOT NULL,
   `adresa` varchar(50) NOT NULL,
   PRIMARY KEY (`kompanijaID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kompanija` */
 
-insert  into `kompanija`(`kompanijaID`,`pib`,`maticniBroj`,`naziv`,`ziroRacun`,`datumOsnivanja`,`adresa`) values (1,'18466','15615613','Loreal','165161515','2015-04-15','Kraljevackog bataljona 162, 3400 Kragujevac'),(2,'265489','64611555','Farcom','9841655613','2015-04-12','27. marta 48, 11000 Beograd'),(9,'3','3','3','3','1992-08-03','3');
+insert  into `kompanija`(`kompanijaID`,`pib`,`maticniBroj`,`naziv`,`ziroRacun`,`datumOsnivanja`,`adresa`) values (1,'18466','15615613','Loreal','165161515','2015-04-15','Kraljevackog bataljona 162, 3400 Kragujevac'),(2,'265489','64611555','Farcom','9841655613','2015-04-12','27. marta 48, 11000 Beograd'),(9,'3','3','3','3','1992-08-03','3'),(10,'18566232','895462788','Revlon','175-5411-565','1997-02-17','Omaldinskih brigada 67');
 
 /*Table structure for table `preparat` */
 
@@ -63,11 +63,11 @@ CREATE TABLE `preparat` (
   PRIMARY KEY (`preparatID`,`proizvodjac`),
   KEY `proizvodjac` (`proizvodjac`),
   CONSTRAINT `preparat_ibfk_1` FOREIGN KEY (`proizvodjac`) REFERENCES `kompanija` (`kompanijaID`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `preparat` */
 
-insert  into `preparat`(`preparatID`,`naziv`,`cena`,`proizvodjac`) values (1,'ulje za masazu',756,1),(2,'maska za kosu',1890,2),(4,'piling za telo',1750,1),(5,'dermal krem',450,1);
+insert  into `preparat`(`preparatID`,`naziv`,`cena`,`proizvodjac`) values (1,'ulje za masazu',756,1),(2,'maska za kosu',1890,2),(4,'piling za telo',1750,1),(5,'dermal krem',450,1),(6,'maska za kosu',369,2),(7,'lak za nokte',169,1),(8,'ulje za zanoktice',823,2),(9,'ampula vitamina C',44,2),(10,'fdfds',0,1);
 
 /*Table structure for table `raspored` */
 
@@ -78,14 +78,14 @@ CREATE TABLE `raspored` (
   `tretmanID` int(10) unsigned NOT NULL,
   `brojTermina` int(11) DEFAULT NULL,
   PRIMARY KEY (`zaposleniID`,`tretmanID`),
-  KEY `tretmanID` (`tretmanID`),
-  CONSTRAINT `raspored_ibfk_1` FOREIGN KEY (`zaposleniID`) REFERENCES `zaposleni` (`zaposleniID`) ON UPDATE CASCADE,
-  CONSTRAINT `raspored_ibfk_2` FOREIGN KEY (`tretmanID`) REFERENCES `tretman` (`tretmanID`) ON UPDATE CASCADE
+  KEY `raspored_ibfk_2` (`tretmanID`),
+  CONSTRAINT `raspored_ibfk_2` FOREIGN KEY (`tretmanID`) REFERENCES `tretman` (`tretmanID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `raspored_ibfk_1` FOREIGN KEY (`zaposleniID`) REFERENCES `zaposleni` (`zaposleniID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `raspored` */
 
-insert  into `raspored`(`zaposleniID`,`tretmanID`,`brojTermina`) values (1,5,5),(2,8,2),(3,8,2),(3,9,1);
+insert  into `raspored`(`zaposleniID`,`tretmanID`,`brojTermina`) values (1,5,5),(2,8,2),(3,8,2);
 
 /*Table structure for table `rezervacija` */
 
@@ -104,11 +104,11 @@ CREATE TABLE `rezervacija` (
   CONSTRAINT `rezervacija_ibfk_1` FOREIGN KEY (`zaposleniID`, `tretmanID`) REFERENCES `raspored` (`zaposleniID`, `tretmanID`) ON UPDATE CASCADE,
   CONSTRAINT `rezervacija_ibfk_2` FOREIGN KEY (`tretmanID`) REFERENCES `tretman` (`tretmanID`) ON UPDATE CASCADE,
   CONSTRAINT `rezervacija_ibfk_3` FOREIGN KEY (`klijentID`) REFERENCES `klijent` (`klijentID`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 /*Data for the table `rezervacija` */
 
-insert  into `rezervacija`(`rezervacijaID`,`zaposleniID`,`tretmanID`,`klijentID`,`vreme`) values (2,3,00000000009,00000000001,'2015-04-01 12:00:00'),(3,2,00000000008,00000000001,'2015-04-01 12:00:00'),(5,1,00000000005,00000000001,'2015-05-22 17:00:00'),(6,3,00000000008,00000000001,'2015-05-22 17:00:00'),(7,3,00000000009,00000000001,'2015-05-27 13:00:00'),(8,1,00000000005,00000000001,'2015-05-27 13:00:00'),(9,3,00000000008,00000000001,'2015-05-27 13:00:00'),(10,2,00000000008,00000000001,'2015-05-27 13:00:00'),(11,1,00000000005,00000000001,'3915-05-27 05:00:00');
+insert  into `rezervacija`(`rezervacijaID`,`zaposleniID`,`tretmanID`,`klijentID`,`vreme`) values (27,1,00000000005,00000000001,'2015-07-01 16:00:00'),(29,2,00000000008,00000000001,'2015-07-03 12:40:00'),(30,3,00000000008,00000000001,'2015-07-16 13:00:00'),(46,1,00000000005,00000000001,'2015-07-01 13:59:00'),(47,3,00000000008,00000000001,'2015-07-16 16:00:00');
 
 /*Table structure for table `tretman` */
 
@@ -120,11 +120,11 @@ CREATE TABLE `tretman` (
   `cena` double unsigned NOT NULL,
   `trajanjeUMin` int(11) NOT NULL,
   PRIMARY KEY (`tretmanID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tretman` */
 
-insert  into `tretman`(`tretmanID`,`opis`,`cena`,`trajanjeUMin`) values (5,'tretman lica',756,120),(8,'mikrodermalna abrazija',2506,160),(9,'masaza celog tela',756,100),(10,'higijenski tretman lica',450,125);
+insert  into `tretman`(`tretmanID`,`opis`,`cena`,`trajanjeUMin`) values (5,'tretman lica',756,120),(8,'mikrodermalna abrazija',2506,160),(14,'higijenski tretman lica',2200,150);
 
 /*Table structure for table `tretmanpreparati` */
 
@@ -135,13 +135,13 @@ CREATE TABLE `tretmanpreparati` (
   `preparatID` int(10) unsigned NOT NULL,
   PRIMARY KEY (`tretmanID`,`preparatID`),
   KEY `preparatID` (`preparatID`),
-  CONSTRAINT `tretmanpreparati_ibfk_1` FOREIGN KEY (`tretmanID`) REFERENCES `tretman` (`tretmanID`) ON UPDATE CASCADE,
+  CONSTRAINT `tretmanpreparati_ibfk_1` FOREIGN KEY (`tretmanID`) REFERENCES `tretman` (`tretmanID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tretmanpreparati_ibfk_2` FOREIGN KEY (`preparatID`) REFERENCES `preparat` (`preparatID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `tretmanpreparati` */
 
-insert  into `tretmanpreparati`(`tretmanID`,`preparatID`) values (5,1),(8,1),(9,1),(8,4);
+insert  into `tretmanpreparati`(`tretmanID`,`preparatID`) values (8,1),(8,4),(14,4),(5,5),(5,6);
 
 /*Table structure for table `zaposleni` */
 
@@ -153,11 +153,11 @@ CREATE TABLE `zaposleni` (
   `stepenSS` varchar(2) DEFAULT NULL,
   `datumRodjenja` datetime DEFAULT NULL,
   PRIMARY KEY (`zaposleniID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `zaposleni` */
 
-insert  into `zaposleni`(`zaposleniID`,`imePrezime`,`stepenSS`,`datumRodjenja`) values (1,'Marija Markovic','I','1995-04-23 22:37:43'),(2,'Milica Petrovic','I','1992-08-03 00:00:00'),(3,'Jovana Milosevic','II','1985-06-11 20:01:00');
+insert  into `zaposleni`(`zaposleniID`,`imePrezime`,`stepenSS`,`datumRodjenja`) values (1,'Marija Markovic','I','1995-04-23 22:37:43'),(2,'Milica Petrovic','I','1992-08-03 00:00:00'),(3,'Jovana Milosevic','II','1985-06-11 20:01:00'),(4,'Svetlana Ruži?','I','1992-08-03 00:00:00'),(5,'Nela Mirkovic','I','1990-08-19 00:00:00');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

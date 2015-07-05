@@ -37,9 +37,9 @@ public class ServerskaNit extends Thread {
             System.out.println("Klijent se otkacio");
         } catch (IOException ex) {
 
-            Logger.getLogger(ServerskaNit.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServerskaNit.class.getName()).log(Level.WARNING, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ServerskaNit.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServerskaNit.class.getName()).log(Level.WARNING, null, ex);
         }
     }
 

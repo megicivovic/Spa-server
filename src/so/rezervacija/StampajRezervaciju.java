@@ -7,9 +7,9 @@ package so.rezervacija;
 
 import domen.Rezervacija;
 import java.awt.Desktop;
-import static java.awt.font.TextHitInfo.leading;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -63,7 +63,7 @@ public class StampajRezervaciju extends GenerickaSistemskaOperacija {
             float startY = mediabox.getUpperRightY() - margin;
 
             String text = "Izvrsili ste rezervaciju za tretman " + r.getTretman()
-                    + ", vreme rezervacije:" + r.getVreme() + " zaposleni koji će vršiti tretman:" 
+                    + ", vreme rezervacije:" + new SimpleDateFormat("YYYY-MM-dd HH:mm").format(r.getVreme()) + " zaposleni koji ce vrsiti tretman:" 
                     + r.getZaposleni().getImePrezime();
             List<String> lines = new ArrayList<String>();
             int lastSpace = -1;

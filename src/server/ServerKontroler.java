@@ -62,7 +62,7 @@ public class ServerKontroler {
 
         try {
             so.izvrsiSO();
-            if (((UlogujSe) so).getKlijent()==null){
+            if (((UlogujSe) so).getKlijent() == null) {
                 throw new Exception("");
             }
             serverOdgovor.setObjekat(((UlogujSe) so).getKlijent());
@@ -96,8 +96,8 @@ public class ServerKontroler {
         ServerOdgovor serverOdgovor = new ServerOdgovor();
         try {
             so.izvrsiSO();
-            if (!((ValidirajKorisnickoIme) so).isMoze()){
-                 throw new Exception("");
+            if (!((ValidirajKorisnickoIme) so).isMoze()) {
+                throw new Exception("");
             }
             serverOdgovor.setObjekat(((ValidirajKorisnickoIme) so).isMoze());
             serverOdgovor.setStatus(Status.ZAVRSENO);
@@ -133,8 +133,9 @@ public class ServerKontroler {
                 GenerickaSistemskaOperacija so = new DodajRezervaciju(r);
                 so.izvrsiSO();
                 serverOdgovor.setStatus(Status.ZAVRSENO);
+            } else {
+                throw new Exception();
             }
-            else throw new Exception();
 
         } catch (Exception ex) {
             serverOdgovor.setObjekat(ex);
@@ -170,22 +171,26 @@ public class ServerKontroler {
             if (rezervacijeZaposlenog != null) {
                 for (Rezervacija rezervacija : rezervacijeZaposlenog) {
                     //vreme zavrsetka tretmana
-                    Tretman t = new VratiTretmanePoID(rezervacija.getTretman().getTretmanID()).vratiTretman();
-                    Calendar cal = new GregorianCalendar();
-                    cal.setTime(rezervacija.getVreme());
-                    cal.add(Calendar.MINUTE, t.getTrajanjeUMin());
+                    VratiTretmanePoID soVT = new VratiTretmanePoID(rezervacija.getTretman().getTretmanID());
+                    soVT.izvrsiSO();
+                    Tretman t = soVT.vratiTretman();
 
-                    //trazeno vreme
                     Calendar vremePocetka = new GregorianCalendar();
-                    vremePocetka.setTime(vreme);
+                    vremePocetka.setTime(rezervacija.getVreme());
 
                     Calendar vremeZavrsetka = new GregorianCalendar();
                     vremeZavrsetka.setTime(rezervacija.getVreme());
                     vremeZavrsetka.add(Calendar.MINUTE, t.getTrajanjeUMin());
-                    
-                    
 
-                    if (!cal.before(vremePocetka)||!cal.after(vremeZavrsetka)) {
+                    //trazeno vreme
+                    Calendar trazenoVreme = new GregorianCalendar();
+                    trazenoVreme.setTime(vreme);
+
+                    Calendar trazenoVremeZavrsetka = new GregorianCalendar();
+                    trazenoVremeZavrsetka.setTime(vreme);
+                    trazenoVremeZavrsetka.add(Calendar.MINUTE, t.getTrajanjeUMin());
+
+                    if (!(trazenoVreme.after(vremeZavrsetka) || trazenoVremeZavrsetka.before(vremePocetka))) {
                         raspolozivost = false;
                         throw new Exception("Ne mozete rezervisati traženi termin!");
                     }
@@ -553,10 +558,10 @@ public class ServerKontroler {
     }
 
     static ServerOdgovor vratiSveRezervacijeDana(KlijentZahtev klijentZahtev) {
-        GregorianCalendar dan = (GregorianCalendar) klijentZahtev.getObjekat();      
-        GenerickaSistemskaOperacija so = new VratiSveRezervacije(" WHERE YEAR(vreme)="+dan.get(GregorianCalendar.YEAR)
-                + " AND MONTH(vreme)= "+(dan.get(GregorianCalendar.MONTH)+1)
-                + " AND DAY(vreme)="+dan.get(GregorianCalendar.DAY_OF_MONTH));
+        GregorianCalendar dan = (GregorianCalendar) klijentZahtev.getObjekat();
+        GenerickaSistemskaOperacija so = new VratiSveRezervacije(" WHERE YEAR(vreme)=" + dan.get(GregorianCalendar.YEAR)
+                + " AND MONTH(vreme)= " + (dan.get(GregorianCalendar.MONTH) + 1)
+                + " AND DAY(vreme)=" + dan.get(GregorianCalendar.DAY_OF_MONTH));
         ServerOdgovor serverOdgovor = new ServerOdgovor();
 
         try {
@@ -569,10 +574,11 @@ public class ServerKontroler {
         }
         return serverOdgovor;
     }
+
     static ServerOdgovor vratiSveRezervacijeRasporeda(KlijentZahtev klijentZahtev) {
-        Raspored r = (Raspored) klijentZahtev.getObjekat();      
-        GenerickaSistemskaOperacija so = new VratiSveRezervacije(" WHERE tretmanID="+r.getTretman().getTretmanID()
-                +" AND zaposleniID="+r.getZaposleni().getZaposleniID());
+        Raspored r = (Raspored) klijentZahtev.getObjekat();
+        GenerickaSistemskaOperacija so = new VratiSveRezervacije(" WHERE tretmanID=" + r.getTretman().getTretmanID()
+                + " AND zaposleniID=" + r.getZaposleni().getZaposleniID());
         ServerOdgovor serverOdgovor = new ServerOdgovor();
 
         try {

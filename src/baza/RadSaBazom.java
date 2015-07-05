@@ -108,6 +108,7 @@ public final class RadSaBazom {
             potvrdiTransakciju();
             s.close();
         } catch (Exception ex) {
+            konekcija.rollback();
             Logger.getLogger(RadSaBazom.class.getName()).log(Level.SEVERE, null, ex);
             throw new Exception("Neuspesno cuvanje objekta.");
         }
@@ -123,6 +124,7 @@ public final class RadSaBazom {
             s.executeUpdate(upit);
             s.close();
         } catch (Exception ex) {
+            konekcija.rollback();
             Logger.getLogger(RadSaBazom.class.getName()).log(Level.SEVERE, null, ex);
             throw new Exception("Neuspesno azuriranje objekta.");
         }
@@ -152,6 +154,7 @@ public final class RadSaBazom {
             s.executeUpdate(upit);
             s.close();
         } catch (Exception ex) {
+            konekcija.rollback();
             Logger.getLogger(RadSaBazom.class.getName()).log(Level.SEVERE, null, ex);
             throw new Exception("Neuspesno brisanje objekta.");
         }

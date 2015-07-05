@@ -134,6 +134,7 @@ public class ServerKontroler {
                 so.izvrsiSO();
                 serverOdgovor.setStatus(Status.ZAVRSENO);
             }
+            else throw new Exception();
 
         } catch (Exception ex) {
             serverOdgovor.setObjekat(ex);
@@ -178,11 +179,13 @@ public class ServerKontroler {
                     Calendar vremePocetka = new GregorianCalendar();
                     vremePocetka.setTime(vreme);
 
-                    Calendar calVremeZavrsetka = new GregorianCalendar();
-                    calVremeZavrsetka.setTime(rezervacija.getVreme());
-                    calVremeZavrsetka.add(Calendar.MINUTE, t.getTrajanjeUMin());
+                    Calendar vremeZavrsetka = new GregorianCalendar();
+                    vremeZavrsetka.setTime(rezervacija.getVreme());
+                    vremeZavrsetka.add(Calendar.MINUTE, t.getTrajanjeUMin());
+                    
+                    
 
-                    if (!cal.before(vremePocetka)) {
+                    if (!cal.before(vremePocetka)||!cal.after(vremeZavrsetka)) {
                         raspolozivost = false;
                         throw new Exception("Ne mozete rezervisati traženi termin!");
                     }

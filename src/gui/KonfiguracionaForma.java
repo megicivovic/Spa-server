@@ -45,11 +45,11 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        imeSubpaTextField = new javax.swing.JTextField();
-        imeDrajveraTextField = new javax.swing.JTextField();
-        urlTextField = new javax.swing.JTextField();
-        korisnickoImeTextField = new javax.swing.JTextField();
-        sifraTextField = new javax.swing.JTextField();
+        jtxtSUBP = new javax.swing.JTextField();
+        jtxtDrajver = new javax.swing.JTextField();
+        jtxtURL = new javax.swing.JTextField();
+        jtxtUsername = new javax.swing.JTextField();
+        jtxtPassword = new javax.swing.JTextField();
         dodajButton = new javax.swing.JButton();
         pregledKofiguracijaTab = new javax.swing.JPanel();
         pregledKonfiguracijaTable = new javax.swing.JScrollPane();
@@ -86,9 +86,9 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
 
         jLabel6.setText("Sifra:");
 
-        urlTextField.addActionListener(new java.awt.event.ActionListener() {
+        jtxtURL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                urlTextFieldActionPerformed(evt);
+                jtxtURLActionPerformed(evt);
             }
         });
 
@@ -113,11 +113,11 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(imeSubpaTextField)
-                    .addComponent(imeDrajveraTextField)
-                    .addComponent(urlTextField)
-                    .addComponent(korisnickoImeTextField)
-                    .addComponent(sifraTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                    .addComponent(jtxtSUBP)
+                    .addComponent(jtxtDrajver)
+                    .addComponent(jtxtURL)
+                    .addComponent(jtxtUsername)
+                    .addComponent(jtxtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnlKonfiguracijaLayout.createSequentialGroup()
                 .addContainerGap(418, Short.MAX_VALUE)
@@ -130,23 +130,23 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(imeSubpaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtSUBP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(imeDrajveraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtDrajver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(urlTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(korisnickoImeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpnlKonfiguracijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sifraTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dodajButton)
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -246,32 +246,40 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void urlTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urlTextFieldActionPerformed
+    private void jtxtURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtURLActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_urlTextFieldActionPerformed
+    }//GEN-LAST:event_jtxtURLActionPerformed
 
     private void sacuvajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sacuvajButtonActionPerformed
         ModelBaze.getInstance().postaviTrenutnuBazu((String) aktivnaKonfiguracijaComboBox.getSelectedItem());
     }//GEN-LAST:event_sacuvajButtonActionPerformed
 
     private void dodajButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dodajButtonActionPerformed
-        String dbms = imeSubpaTextField.getText().trim();
+        String dbms = jtxtSUBP.getText().trim();
         if (!dbms.equals("") && !ModelBaze.getInstance().dajNaziveSvhPodrzanihBaza().contains(dbms)) {
             JOptionPane.showMessageDialog(this, "Nedozvoljeno ime za SUBP");
             return;
         }
         
-        String url = urlTextField.getText().trim();
-        String drajver = imeDrajveraTextField.getText().trim();
-        String korisnik = korisnickoImeTextField.getText().trim();
-        String sifra = sifraTextField.getText().trim();
-        
+        if (jtxtUsername.getText().equals("")&&jtxtDrajver.getText().equals("") && jtxtPassword.getText().equals("")&&
+                jtxtURL.getText().equals("")&& jtxtSUBP.getText().equals("")){          
+              JOptionPane.showMessageDialog(this, "Ne mozete uneti praznu konfiguraciju!", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else{
+
+        String url = jtxtURL.getText().trim();
+        String drajver = jtxtDrajver.getText().trim();
+        String korisnik = jtxtUsername.getText().trim();
+        String sifra = jtxtPassword.getText().trim();
+
         ModelBaze.getInstance().postaviURL(dbms, url);
         ModelBaze.getInstance().postaviDrajver(dbms, drajver);
         ModelBaze.getInstance().postaviKorisnika(dbms, korisnik);
         ModelBaze.getInstance().postaviSifru(dbms, sifra);
         ((KonfiguracioniModelTabele) jTable1.getModel()).fireTableDataChanged();
         JOptionPane.showMessageDialog(this, "Uspešno ste dodali konfiguraciju baze!");
+        }
     }//GEN-LAST:event_dodajButtonActionPerformed
 
     private void startServerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startServerButtonActionPerformed
@@ -279,6 +287,10 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
         int brPorta = 0;
         try {
             brPorta = Integer.parseInt(sBrPorta);
+            Server server = new Server(brPorta);
+            server.start();
+            jlblServerStatus.setText("Server je pokrenut!");
+            jlblServerStatus.setForeground(Color.green);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Neispravan broj porta!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -292,10 +304,7 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
 //        urlTextField.setEnabled(true);
 //        korisnickoImeTextField.setEnabled(true);
 //        sifraTextField.setEnabled(true);
-        Server server = new Server(brPorta);
-        server.start();
-        jlblServerStatus.setText("Server je pokrenut!");
-        jlblServerStatus.setForeground(Color.green);
+
     }//GEN-LAST:event_startServerButtonActionPerformed
 
     /**
@@ -337,8 +346,6 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
     private javax.swing.JComboBox aktivnaKonfiguracijaComboBox;
     private javax.swing.JButton dodajButton;
     private javax.swing.JTabbedPane dodajKonfiguracijuTab;
-    private javax.swing.JTextField imeDrajveraTextField;
-    private javax.swing.JTextField imeSubpaTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -350,13 +357,15 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
     private javax.swing.JLabel jlblServerStatus;
     private javax.swing.JPanel jpnlKonfiguracija;
     private javax.swing.JTextField jtxtBrojPorta;
-    private javax.swing.JTextField korisnickoImeTextField;
+    private javax.swing.JTextField jtxtDrajver;
+    private javax.swing.JTextField jtxtPassword;
+    private javax.swing.JTextField jtxtSUBP;
+    private javax.swing.JTextField jtxtURL;
+    private javax.swing.JTextField jtxtUsername;
     private javax.swing.JPanel pregledKofiguracijaTab;
     private javax.swing.JScrollPane pregledKonfiguracijaTable;
     private javax.swing.JButton sacuvajButton;
-    private javax.swing.JTextField sifraTextField;
     private javax.swing.JButton startServerButton;
-    private javax.swing.JTextField urlTextField;
     // End of variables declaration//GEN-END:variables
 
     private void srediFormu() {
@@ -365,13 +374,13 @@ public class KonfiguracionaForma extends javax.swing.JFrame {
         }
         aktivnaKonfiguracijaComboBox.setSelectedItem(ModelBaze.getInstance().dajNazivTrenutneBaze());
         jTable1.setModel(new KonfiguracioniModelTabele());
-        
+
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 ModelBaze.getInstance().sacuvajPodesavanja();
             }
-            
+
         });
 //        dodajKonfiguracijuTab.setEnabled(false);
 //        dodajButton.setEnabled(false);

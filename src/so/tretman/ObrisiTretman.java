@@ -28,6 +28,7 @@ public class ObrisiTretman extends GenerickaSistemskaOperacija {
     @Override
     protected void izvrsiKonkretnuOperaciju() throws Exception {
         broker.obrisi(new Tretman(), " tretmanID=" + tretmanID);
+        
     }
 
     @Override

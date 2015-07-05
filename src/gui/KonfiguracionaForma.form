@@ -135,11 +135,11 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="imeSubpaTextField" max="32767" attributes="0"/>
-                          <Component id="imeDrajveraTextField" max="32767" attributes="0"/>
-                          <Component id="urlTextField" max="32767" attributes="0"/>
-                          <Component id="korisnickoImeTextField" max="32767" attributes="0"/>
-                          <Component id="sifraTextField" pref="134" max="32767" attributes="0"/>
+                          <Component id="jtxtSUBP" max="32767" attributes="0"/>
+                          <Component id="jtxtDrajver" max="32767" attributes="0"/>
+                          <Component id="jtxtURL" max="32767" attributes="0"/>
+                          <Component id="jtxtUsername" max="32767" attributes="0"/>
+                          <Component id="jtxtPassword" pref="134" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -156,27 +156,27 @@
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="imeSubpaTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtxtSUBP" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                          <Component id="imeDrajveraTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtxtDrajver" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="urlTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtxtURL" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
-                          <Component id="korisnickoImeTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtxtUsername" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="sifraTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtxtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="dodajButton" min="-2" max="-2" attributes="0"/>
@@ -211,18 +211,18 @@
                 <Property name="text" type="java.lang.String" value="Sifra:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="imeSubpaTextField">
+            <Component class="javax.swing.JTextField" name="jtxtSUBP">
             </Component>
-            <Component class="javax.swing.JTextField" name="imeDrajveraTextField">
+            <Component class="javax.swing.JTextField" name="jtxtDrajver">
             </Component>
-            <Component class="javax.swing.JTextField" name="urlTextField">
+            <Component class="javax.swing.JTextField" name="jtxtURL">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="urlTextFieldActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtURLActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="korisnickoImeTextField">
+            <Component class="javax.swing.JTextField" name="jtxtUsername">
             </Component>
-            <Component class="javax.swing.JTextField" name="sifraTextField">
+            <Component class="javax.swing.JTextField" name="jtxtPassword">
             </Component>
             <Component class="javax.swing.JButton" name="dodajButton">
               <Properties>
